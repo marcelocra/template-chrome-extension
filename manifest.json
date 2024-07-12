@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "version": "0.1.0",
+  "name": "chrome-extension-no-bundler",
+  "description": "A simple Chrome extension without bundler.",
+  "permissions": ["scripting", "activeTab", "storage", "notifications"],
+  "background": {
+    "service_worker": "./ext/service-worker.js"
+  },
+  "omnibox": {
+    "keyword": "l"
+  },
+  "commands": {
+    "go-to-tab-to-the-left": {
+      "suggested_key": {
+        "default": "Alt+J"
+      },
+      "description": "Goes to the tab to the left of the current one."
+    }
+  },
+  "action": {
+    "default_popup": "./out/popup.html"
+  }
+}

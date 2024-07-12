@@ -1,0 +1,58 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^20",
+    "daisyui": "^4.12.10",
+    "eslint": "^8",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "google"
+    ],
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "prettier": {
+    "importOrder": [
+      "^react",
+      "<THIRD_PARTY_MODULES>",
+      "^@/(.*)$",
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "plugins": [
+      "prettier-plugin-tailwindcss",
+      "@trivago/prettier-plugin-sort-imports"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "engineStrict": true,
+  "packageManager": "npm@10.5.0",
+  "author": {
+    "name": "Marcelo Almeida",
+    "email": "npm@marcelocra.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcelocra/chrome-extension-no-bundler"
+  }
+}
