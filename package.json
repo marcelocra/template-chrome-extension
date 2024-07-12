@@ -3,17 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "popup-tw-watch": "tailwindcss -i ./src/input.css -o ./src/popup/styles.css --watch",
+    "popup-tw-release": "tailwindcss -i ./src/input.css -o ./src/popup/styles.css --minify"
+  },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
+    "cssnano": "^7.0.4",
     "daisyui": "^4.12.10",
     "eslint": "^8",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^9.1.0",
-    "postcss": "^8",
+    "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.1",
