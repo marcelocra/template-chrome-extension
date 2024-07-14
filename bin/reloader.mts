@@ -18,19 +18,16 @@ Deno.serve((req) => {
   console.log("new request");
 
   const { socket, response } = Deno.upgradeWebSocket(req);
-  socket.addEventListener("open", async () => {
+  socket.addEventListener("open", () => {
     console.log("a client connected!");
 
-    for await (const event of watcher) {
-      console.log("event:", event);
-
-      if (socket.readyState === WebSocket.CLOSED) {
-        console.log("client disconnected, stopping watcher...");
-        break;
+    async function stream() {
+      for await (const event of watcher) {
+        livereload(event, socket);
       }
-
-      livereload(event, socket);
     }
+
+    stream();
   });
 
   socket.addEventListener("message", ({ data }) => {
