@@ -1,0 +1,44 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/async": "jsr:@std/async@0.221.0"
+    },
+    "jsr": {
+      "@std/async@0.221.0": {
+        "integrity": "f5519861754a1bb2898d227dd8ccb545abc975534aa9063e53911d6cb4e365cf"
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@tailwindcss/typography@^0.5.13",
+        "npm:@trivago/prettier-plugin-sort-imports@^4.3.0",
+        "npm:@types/node@^20.14.10",
+        "npm:@types/react-dom@^18.3.0",
+        "npm:@types/react@^18.3.3",
+        "npm:@typescript-eslint/eslint-plugin@^7.13.1",
+        "npm:@typescript-eslint/parser@^7.13.1",
+        "npm:@vitejs/plugin-react-swc@^3.5.0",
+        "npm:autoprefixer@^10.4.19",
+        "npm:cssnano@^7.0.4",
+        "npm:daisyui@^4.12.10",
+        "npm:eslint-config-google@^0.14.0",
+        "npm:eslint-config-prettier@^9.1.0",
+        "npm:eslint-plugin-react-hooks@^4.6.2",
+        "npm:eslint-plugin-react-refresh@^0.4.7",
+        "npm:eslint@^8.57.0",
+        "npm:postcss@^8.4.39",
+        "npm:prettier-plugin-tailwindcss@^0.6.5",
+        "npm:prettier@^3.3.3",
+        "npm:react-dom@^18.3.1",
+        "npm:react@^18.3.1",
+        "npm:tailwindcss@^3.4.4",
+        "npm:typescript@^5.2.2",
+        "npm:vite@^5.3.1"
+      ]
+    }
+  }
+}
