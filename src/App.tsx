@@ -4,8 +4,9 @@ import "./App.css";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 
-function App() {
+async function App() {
   const [count, setCount] = useState(0);
+  const [tabs, setTabs] = useState([]);
 
   // The problem is that we are getting a race condition here, I think. TODO: create a sort of lock here.
   const socket = useMemo(() => {
@@ -41,6 +42,13 @@ function App() {
     console.groupEnd();
   }, [socket, count]);
 
+  useEffect(() => {
+    console.log("getting tabs");
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      setTabs(tabs.map((tab) => tab.title));
+    });
+  }, []);
+
   return (
     <div className="flex flex-col gap-3 justify-center items-center" data-reload={count}>
       <div className="flex flex-row gap-3 justify-center">
@@ -52,6 +60,8 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+
+      {tabs.length !== 0 ? <div>JSON.stringify(tabs, null, 2)</div> : ""}
 
       <h1>Vite4 + React</h1>
 
