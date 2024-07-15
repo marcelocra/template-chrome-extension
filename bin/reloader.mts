@@ -1,7 +1,7 @@
 #!/usr/bin/env -S deno run -A
 import { debounce } from "jsr:@std/async/debounce";
 
-const watcher = Deno.watchFs("src");
+let watcher: Deno.FsWatcher;
 
 const livereload = debounce((event: Deno.FsEvent, socket: WebSocket) => {
   console.log("[%s] %s", event.kind, event.paths[0]);
@@ -21,8 +21,14 @@ Deno.serve((req) => {
   socket.addEventListener("open", () => {
     console.log("a client connected!");
 
+    watcher = Deno.watchFs("src");
+
     async function stream() {
       for await (const event of watcher) {
+        if (socket.readyState !== WebSocket.OPEN) {
+          return;
+        }
+
         livereload(event, socket);
       }
     }
