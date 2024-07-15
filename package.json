@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev-chrome-ts": "tsc -b --watch",
-    "dev-chrome-vite": "vite build --watch",
+    "dev:chrome-ts": "tsc -b --watch",
+    "dev:chrome-vite": "vite build --watch",
     "// ": "Run with: deno task dev-chrome-reload",
-    "dev-chrome-reload": "deno run bin/reloader.mts",
+    "dev:chrome-reload": "deno run bin/reloader.mts",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -33,6 +33,7 @@
     "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.4",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "postcss": "^8.4.39",
@@ -48,11 +49,22 @@
       "browser": true,
       "es2020": true
     },
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "project": [
+        "./tsconfig.json",
+        "./tsconfig.node.json"
+      ]
+    },
     "extends": [
       "eslint:recommended",
       "google",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react-hooks/recommended"
+      "plugin:@typescript-eslint/strict-type-checked",
+      "plugin:@typescript-eslint/stylistic-type-checked",
+      "plugin:react-hooks/recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime"
     ],
     "ignorePatterns": [
       "dist"
