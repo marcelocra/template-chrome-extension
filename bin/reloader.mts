@@ -5,8 +5,9 @@ let watcher: Deno.FsWatcher;
 
 const livereload = debounce((event: Deno.FsEvent, socket: WebSocket) => {
   console.log("[%s] %s", event.kind, event.paths[0]);
-  console.log("reloading...");
+  console.log("sending reload message to client...");
   socket.send("reload");
+  console.log("done!");
 }, 500);
 
 Deno.serve((req) => {
@@ -15,11 +16,11 @@ Deno.serve((req) => {
     return new Response(null, { status: 501 });
   }
 
-  console.log("new request");
+  console.log("new connection request started from client...");
 
   const { socket, response } = Deno.upgradeWebSocket(req);
   socket.addEventListener("open", () => {
-    console.log("a client connected!");
+    console.log("client connected!");
 
     watcher = Deno.watchFs("src");
 
@@ -29,7 +30,9 @@ Deno.serve((req) => {
           return;
         }
 
-        livereload(event, socket);
+        if (event.kind === "access") {
+          livereload(event, socket);
+        }
       }
     }
 
@@ -41,7 +44,7 @@ Deno.serve((req) => {
   });
 
   socket.addEventListener("close", () => {
-    console.log("a client disconnected!");
+    console.log("client disconnected!");
   });
 
   return response;
