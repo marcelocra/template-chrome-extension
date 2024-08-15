@@ -10,7 +10,7 @@ const livereload = debounce((event: Deno.FsEvent, socket: WebSocket) => {
   console.log("done!");
 }, 500);
 
-Deno.serve((req) => {
+Deno.serve({port: 3000, hostname: '127.0.0.1'}, (req) => {
   // We only support websockets.
   if (req.headers.get("upgrade") != "websocket") {
     return new Response(null, { status: 501 });
@@ -19,6 +19,7 @@ Deno.serve((req) => {
   console.log("new connection request started from client...");
 
   const { socket, response } = Deno.upgradeWebSocket(req);
+
   socket.addEventListener("open", () => {
     console.log("client connected!");
 
